@@ -51,21 +51,35 @@ int main(int argc, char **argv)
   ierr = PetscSectionSetFieldName(section, 1, "v");CHKERRQ(ierr);
   ierr = PetscSectionSetFieldName(section, 2, "w");CHKERRQ(ierr);
   ierr = PetscSectionView(section, PETSC_VIEWER_STDOUT_WORLD);CHKERRQ(ierr);
+	printf("DEBUG  POUET 1\n");
   /* Tell the DM to use this data layout */
   ierr = DMSetDefaultSection(dm, section);CHKERRQ(ierr);
+	printf("DEBUG  POUET 2\n");
   /* Create a Vec with this layout and view it */
   ierr = DMGetGlobalVector(dm, &u);CHKERRQ(ierr);
+	printf("DEBUG  POUET 3\n");
   ierr = PetscViewerCreate(PETSC_COMM_WORLD, &viewer);CHKERRQ(ierr);
+	printf("DEBUG  POUET 4\n");
   ierr = PetscViewerSetType(viewer, PETSCVIEWERVTK);CHKERRQ(ierr);
-  ierr = PetscViewerPushFormat(viewer, PETSC_VIEWER_ASCII_VTK);CHKERRQ(ierr);
-  ierr = PetscViewerFileSetName(viewer, "sol.vtk");CHKERRQ(ierr);
-  ierr = VecView(u, viewer);CHKERRQ(ierr);
-  ierr = PetscViewerPopFormat(viewer);CHKERRQ(ierr);
-  ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr);
-  ierr = DMRestoreGlobalVector(dm, &u);CHKERRQ(ierr);
+  printf("DEBUG  POUET 5\n");
+	ierr = PetscViewerPushFormat(viewer, PETSC_VIEWER_ASCII_VTK);CHKERRQ(ierr);
+  printf("DEBUG  POUET 6\n");
+	ierr = PetscViewerFileSetName(viewer, "sol.vtk");CHKERRQ(ierr);
+  printf("DEBUG  POUET 7\n");
+	ierr = VecView(u, viewer);CHKERRQ(ierr);
+  printf("DEBUG  POUET 8\n");
+	ierr = PetscViewerPopFormat(viewer);CHKERRQ(ierr);
+  printf("DEBUG  POUET 9\n");
+	exit(12);
+	ierr = PetscViewerDestroy(&viewer);CHKERRQ(ierr);
+  printf("DEBUG  POUET 10\n");
+	ierr = DMRestoreGlobalVector(dm, &u);CHKERRQ(ierr);
   /* Cleanup */
-  ierr = PetscSectionDestroy(&section);CHKERRQ(ierr);
-  ierr = DMDestroy(&dm);CHKERRQ(ierr);
-  ierr = PetscFinalize();
+  printf("DEBUG  POUET 11\n");
+	ierr = PetscSectionDestroy(&section);CHKERRQ(ierr);
+  printf("DEBUG  POUET 12\n");
+	ierr = DMDestroy(&dm);CHKERRQ(ierr);
+  printf("DEBUG  POUET 13\n");
+	ierr = PetscFinalize();
   return 0;
 }
