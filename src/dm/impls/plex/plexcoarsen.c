@@ -229,3 +229,5 @@ PetscErrorCode DMCoarsenHierarchy_Plex(DM dm, PetscInt nlevels, DM dmCoarsened[]
   }
   PetscFunctionReturn(0);
 }
+
+
